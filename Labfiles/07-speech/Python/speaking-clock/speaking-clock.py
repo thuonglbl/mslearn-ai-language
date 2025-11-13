@@ -38,7 +38,10 @@ def TranscribeCommand():
     current_dir = os.getcwd()
     audioFile = current_dir + '/time.wav'
     audio_config = speech_sdk.AudioConfig(filename=audioFile)
+    # use real microphone, default use microphone so could ignore audio_config
+    # audio_config = speech_sdk.AudioConfig(use_default_microphone=True) 
     speech_recognizer = speech_sdk.SpeechRecognizer(speech_config, audio_config)
+    # print ('Speak now...')
 
     # Process speech input
     print("Listening...")
@@ -66,6 +69,8 @@ def TellTime():
     output_file = "output.wav"
     speech_config.speech_synthesis_voice_name = "en-GB-RyanNeural"
     audio_config = speech_sdk.audio.AudioConfig(filename=output_file)
+    # use real speaker, default use speaker so could ignore audio_config
+    # audio_config = speech_sdk.audio.AudioOutputConfig(use_default_speaker=True)
     speech_synthesizer = speech_sdk.SpeechSynthesizer(speech_config, audio_config,)
 
     # Synthesize spoken output
